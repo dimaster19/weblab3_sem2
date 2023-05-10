@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
-use Illuminate\Http\Client\Request;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class CategoryController extends Controller
 {
@@ -27,23 +28,23 @@ class CategoryController extends Controller
         return true;
     }
 
-    public function update(Request $request, Category $category)
+    public function update(Request $request)
     {
+        Log::debug($request);
         $request->validate([
             'name' => 'required',
-
+            'id' => 'required'
         ]);
-
+        $category = Category::find($request->id);
         $category->update($request->all());
         return true;
-
     }
 
 
-    public function destroy(Category $category)
+    public function destroy(Request $request)
     {
-       $category->delete();
-       return true;
-
+        $category = Category::find($request->id);
+        $category->delete();
+        return true;
     }
 }

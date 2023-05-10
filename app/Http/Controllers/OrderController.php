@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
-use Illuminate\Http\Client\Request;
+use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
@@ -29,7 +29,7 @@ class OrderController extends Controller
         return true;
     }
 
-    public function update(Request $request, Order $order)
+    public function update(Request $request)
     {
         $request->validate([
             'count' => 'required',
@@ -37,6 +37,7 @@ class OrderController extends Controller
             'product_id' => 'required',
 
         ]);
+        $order =  Order::find($request->id);
 
         $order->update($request->all());
         return true;
@@ -44,8 +45,9 @@ class OrderController extends Controller
     }
 
 
-    public function destroy(Order $order)
+    public function destroy(Request $request)
     {
+       $order =  Order::find($request->id);
        $order->delete();
        return true;
 

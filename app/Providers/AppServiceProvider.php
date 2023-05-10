@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-
+use App\Services\CurrencyExchangeService;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -13,7 +13,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
     }
 
     /**
@@ -23,6 +22,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->app->bind('currencyExchange', 'App\Services\CurrencyExchangeService');
+        $this->app->bind('geoService', 'App\Services\GeoService');
+
     }
 }

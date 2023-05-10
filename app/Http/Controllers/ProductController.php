@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
-use Illuminate\Http\Client\Request;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -31,7 +31,7 @@ class ProductController extends Controller
         return true;
     }
 
-    public function update(Request $request, Product $product)
+    public function update(Request $request)
     {
         $request->validate([
             'name' => 'required',
@@ -42,15 +42,16 @@ class ProductController extends Controller
             'delivery_id' => 'required',
 
         ]);
-
+        $product = Product::find($request->id);
         $product->update($request->all());
         return true;
 
     }
 
 
-    public function destroy(Product $product)
+    public function destroy(Request $request)
     {
+       $product = Product::find($request->id);
        $product->delete();
        return true;
 

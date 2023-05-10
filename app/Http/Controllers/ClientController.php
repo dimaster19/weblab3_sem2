@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Client;
 use App\Http\Requests\StoreClientRequest;
 use App\Http\Requests\UpdateClientRequest;
-use Illuminate\Http\Client\Request;
+use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
@@ -26,23 +26,23 @@ class ClientController extends Controller
         return true;
     }
 
-    public function update(Request $request, Client $client)
+    public function update(Request $request)
     {
         $request->validate([
             'name' => 'required',
 
         ]);
+        $client = Client::find($request->id);
 
         $client->update($request->all());
         return true;
-
     }
 
 
-    public function destroy(Client $client)
+    public function destroy(Request $request)
     {
-       $client->delete();
-       return true;
-
+        $client = Client::find($request->id);
+        $client->delete();
+        return true;
     }
 }
