@@ -192,6 +192,8 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         'CurrencyExchange' => App\Facades\CurrencyExchange::class,
+        'GeoService' => App\Facades\GeoService::class
+
     ])->toArray(),
 
 ];

@@ -11,23 +11,7 @@ class GeoService
     public function getGeo($address)
     {
 
-        // $curl = curl_init();
 
-        // curl_setopt_array($curl, array(
-        //     CURLOPT_URL => "https://api.apilayer.com/currency_data/convert?to=to&from=from&amount=amount",
-        //     CURLOPT_HTTPHEADER => array(
-        //         "Content-Type: text/plain",
-        //         "apikey: jrBUHsEkn1BgIgcNP2T8ALpPOgiVvqy0"
-        //     ),
-        //     CURLOPT_RETURNTRANSFER => true,
-        //     CURLOPT_ENCODING => "",
-        //     CURLOPT_MAXREDIRS => 10,
-        //     CURLOPT_TIMEOUT => 0,
-        //     CURLOPT_FOLLOWLOCATION => true,
-        //     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        //     CURLOPT_CUSTOMREQUEST => "GET"
-        // ));
-        //5111cc9ed4b8cdaa8f3bf9005cdf064e
 
         $response = Http::acceptJson()->get('api.positionstack.com/v1/forward', [
             'access_key' => '5111cc9ed4b8cdaa8f3bf9005cdf064e',
